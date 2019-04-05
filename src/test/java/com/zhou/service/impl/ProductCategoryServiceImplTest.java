@@ -1,11 +1,13 @@
 package com.zhou.service.impl;
 
+import com.zhou.bean.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -33,6 +35,11 @@ public class ProductCategoryServiceImplTest {
     }
 
     @Test
+    @Transactional
     public void save() {
+        ProductCategory productCategory = new ProductCategory("男生专享", 10);
+        ProductCategory result = PCService.save(productCategory);
+        Assert.assertNotNull(result);
+
     }
 }

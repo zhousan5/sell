@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
@@ -22,9 +23,12 @@ public class ProductCategory implements Serializable {
     private String categoryName;
 //    类目编号
     private Integer categoryType;
+    private Date createTime;
 
+    private Date updateTime;
     public ProductCategory() {
     }
+
 
     public ProductCategory(String categoryName, Integer categoryType) {
         this.categoryName = categoryName;
