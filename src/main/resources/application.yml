@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 199504
+    url: jdbc:mysql:///sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+server:
+  context-path: /sell
+#次方式 功能简单  与logback-spring.xml冲突只留一个
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  ##都一样第一个路径默认spring.log
+#  ##  path: E:\IdeaProjects\log
+#  file: E:\IdeaProjects\log\sell.log
+#  level: debug
