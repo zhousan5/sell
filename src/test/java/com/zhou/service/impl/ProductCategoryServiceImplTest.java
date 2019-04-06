@@ -7,12 +7,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.Assert.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductCategoryServiceImplTest {
@@ -20,26 +19,27 @@ public class ProductCategoryServiceImplTest {
     private ProductCategoryServiceImpl PCService;
 
     @Test
-    public void findOne() {
-        Assert.assertEquals(new Integer(1),PCService.findOne(1).getCategoryId());
+    public void findOne() throws Exception {
+        ProductCategory productCategory = PCService.findOne(1);
+        Assert.assertEquals(new Integer(1), productCategory.getCategoryId());
     }
 
     @Test
-    public void findAll() {
-        Assert.assertNotEquals(0,PCService.findAll());
+    public void findAll() throws Exception {
+        List<ProductCategory> productCategoryList = PCService.findAll();
+        Assert.assertNotEquals(0, productCategoryList.size());
     }
 
     @Test
-    public void findByCategoryTypeIn() {
-        Assert.assertNotEquals(0,PCService.findByCategoryTypeIn(Arrays.asList(1,2,3)));
+    public void findByCategoryTypeIn() throws Exception {
+        List<ProductCategory> productCategoryList = PCService.findByCategoryTypeIn(Arrays.asList(1,2,3,4));
+        Assert.assertNotEquals(0, productCategoryList.size());
     }
 
     @Test
-    @Transactional
-    public void save() {
-        ProductCategory productCategory = new ProductCategory("男生专享", 10);
+    public void save() throws Exception {
+        ProductCategory productCategory = new ProductCategory("优惠", 10);
         ProductCategory result = PCService.save(productCategory);
         Assert.assertNotNull(result);
-
     }
 }
