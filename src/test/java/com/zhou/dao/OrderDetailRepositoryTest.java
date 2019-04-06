@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderDetailRepositoryTest {
 
     @Autowired
-    private OrderDetailRepository repository;
+    private OrderDetailDao repository;
 
     @Test
     public void saveTest() {

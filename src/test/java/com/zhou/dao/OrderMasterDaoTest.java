@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderMasterRepositoryTest {
+public class OrderMasterDaoTest {
 
     @Autowired
-    private OrderMasterRepository repository;
+    private OrderMasterDao repository;
 
     private final String OPENID = "110110";
 
