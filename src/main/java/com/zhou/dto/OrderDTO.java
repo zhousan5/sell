@@ -1,10 +1,12 @@
 package com.zhou.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zhou.bean.OrderDetail;
 import com.zhou.enums.OrderStatusEnum;
 import com.zhou.enums.PayStatusEnum;
+import com.zhou.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Data
 //@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//如果前段要的数据为nullname我们也不给他传
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
@@ -42,11 +45,12 @@ public class OrderDTO {
     private Integer payStatus;
 
 //     创建时间
-//    @JsonSerialize(using = Date2LongSerializer.class)
+
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     //    更新时间
-//    @JsonSerialize(using = Date2LongSerializer.class)
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

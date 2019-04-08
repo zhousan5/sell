@@ -3,6 +3,8 @@ package com.zhou.service.impl;
 
 import com.zhou.bean.OrderDetail;
 import com.zhou.dto.OrderDTO;
+import com.zhou.enums.OrderStatusEnum;
+import com.zhou.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +29,7 @@ public class OrderServiceImplTest {
 
     private final String BUYER_OPENID = "1101110";
 
-    private final String ORDER_ID = "1497183332311989948";
+    private final String ORDER_ID = "1554552199945325742";
 
     @Test
     public void create() throws Exception {
@@ -41,15 +43,15 @@ public class OrderServiceImplTest {
         //购物车
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
-        o1.setProductId("1");
-        o1.setProductQuantity(1);
+        o1.setProductId("3");
+        o1.setProductQuantity(3);
 
-//        OrderDetail o2 = new OrderDetail();
-//        o2.setProductId("2");
-//        o2.setProductQuantity(2);
+        OrderDetail o2 = new OrderDetail();
+        o2.setProductId("4");
+        o2.setProductQuantity(4);
 
         orderDetailList.add(o1);
-//        orderDetailList.add(o2);
+        orderDetailList.add(o2);
 
         orderDTO.setOrderDetailList(orderDetailList);
 
@@ -57,42 +59,42 @@ public class OrderServiceImplTest {
         log.info("【创建订单】result={}", result);
         Assert.assertNotNull(result);
     }
+//要和数据库对应
+    @Test
+    public void findOne() throws Exception {
+        OrderDTO result = orderService.findOne(ORDER_ID);
+        log.info("【查询单个订单】result={}", result);
+        Assert.assertEquals(ORDER_ID, result.getOrderId());
+    }
 
-//    @Test
-//    public void findOne() throws Exception {
-//        OrderDTO result = orderService.findOne(ORDER_ID);
-//        log.info("【查询单个订单】result={}", result);
-//        Assert.assertEquals(ORDER_ID, result.getOrderId());
-//    }
-//
-//    @Test
-//    public void findList() throws Exception {
-//        PageRequest request = new PageRequest(0,2);
-//        Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
-//        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
-//    }
-//
-//    @Test
-//    public void cancel() throws Exception {
-//        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
-//        OrderDTO result = orderService.cancel(orderDTO);
-//        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
-//    }
-//
-//    @Test
-//    public void finish() throws Exception {
-//        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
-//        OrderDTO result = orderService.finish(orderDTO);
-//        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
-//    }
-//
+    @Test
+    public void findList() throws Exception {
+        PageRequest request = new PageRequest(0,2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+    }
+
+    @Test
+    public void cancel() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
+    }
+
+    @Test
+    public void finish() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
+    }
+
 //    @Test
 //    public void paid() throws Exception {
 //        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
 //        OrderDTO result = orderService.paid(orderDTO);
 //        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
 //    }
-//
+
 //    @Test
 //    public void list() {
 //        PageRequest request = new PageRequest(0,2);

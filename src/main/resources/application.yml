@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql:///sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+    #使用配置全局 前端为null就不返回
+  jackson:
+    default-property-inclusion: non_null
 server:
   context-path: /sell
 #次方式 功能简单  与logback-spring.xml冲突只留一个
