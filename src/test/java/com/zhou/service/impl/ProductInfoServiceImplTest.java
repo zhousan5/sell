@@ -58,9 +58,13 @@ public class ProductInfoServiceImplTest {
 
     @Test
     public void onSale() {
+        ProductInfo productInfo = productInfoService.onSale("1");
+        Assert.assertEquals(ProductStatusEnum.UP,productInfo.getProductStatusEnum());
     }
 
     @Test
     public void offSale() {
+        ProductInfo productInfo = productInfoService.offSale("1");
+        Assert.assertEquals(ProductStatusEnum.DOWN,productInfo.getProductStatusEnum());
     }
 }

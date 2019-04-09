@@ -14,6 +14,7 @@ import com.zhou.enums.ResultEnum;
 import com.zhou.exception.SellException;
 import com.zhou.service.OrderService;
 import com.zhou.service.ProductInfoService;
+import com.zhou.service.WebSocket;
 import com.zhou.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -50,8 +51,8 @@ public class OrderServiceImpl implements OrderService {
 //    @Autowired
 //    private PushMessageService pushMessageService;
 //
-//    @Autowired
-//    private WebSocket webSocket;
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -106,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
         productService.decreaseStock(cartDTOList);
 
         //发送websocket消息
-//        webSocket.sendMessage(orderDTO.getOrderId());
+        webSocket.sendMessage(orderDTO.getOrderId());
 
             return orderDTO;
         }

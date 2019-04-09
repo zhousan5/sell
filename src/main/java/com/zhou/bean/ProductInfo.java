@@ -1,6 +1,8 @@
 package com.zhou.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zhou.enums.ProductStatusEnum;
+import com.zhou.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -42,6 +44,9 @@ public class ProductInfo implements Serializable {
 
     private Date updateTime;
 
-
-
+    //
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum(){
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 }

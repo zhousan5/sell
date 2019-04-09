@@ -13,7 +13,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderDetailRepositoryTest {
+public class OrderDetailDaoTest {
 
     @Autowired
     private OrderDetailDao repository;
